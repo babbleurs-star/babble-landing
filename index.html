@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Babble — no judgement, just yours</title>
+  <meta name="description" content="想說的話，說給 Babble。匿名、私密、有人聽。no judgement, just yours." />
+  <meta name="keywords" content="匿名傾訴,樹洞,情緒記錄,私密日記,心情抒發,AI傾聽,情感支持" />
+  <meta property="og:title" content="Babble — no judgement, just yours" />
+  <meta property="og:description" content="想說，卻沒法說。說給 Babble。" />
+  <meta property="og:type" content="website" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
+
+    * { font-family: 'Inter', sans-serif; }
+
+    body {
+      background: #0f0f10;
+      color: #e8e4df;
+      min-height: 100vh;
+    }
+
+    .grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+    }
+
+    .glow {
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(168, 130, 255, 0.08) 0%, transparent 70%);
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .content { position: relative; z-index: 1; }
+
+    .headline {
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: #f0ebe4;
+    }
+
+    .slogan {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: #9d8fcc;
+      letter-spacing: 0.01em;
+      font-weight: 400;
+    }
+
+    input[type="email"] {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #e8e4df;
+      transition: border-color 0.2s, background 0.2s;
+      outline: none;
+    }
+
+    input[type="email"]::placeholder { color: rgba(232, 228, 223, 0.3); }
+
+    input[type="email"]:focus {
+      border-color: rgba(168, 130, 255, 0.5);
+      background: rgba(255,255,255,0.07);
+    }
+
+    button[type="submit"] {
+      background: #7c5cbf;
+      color: #f0ebe4;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    button[type="submit"]:hover { background: #9070d4; }
+    button[type="submit"]:active { transform: scale(0.98); }
+
+    button[type="submit"]:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .divider {
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.15), transparent);
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="grain"></div>
+  <div class="glow"></div>
+
+  <div class="content flex flex-col min-h-screen px-6">
+
+    <!-- Nav -->
+    <nav class="flex items-center justify-between py-6 max-w-4xl mx-auto w-full">
+      <span class="text-lg font-medium tracking-tight text-[#e8e4df]">Babble</span>
+    </nav>
+
+    <!-- Hero -->
+    <main class="flex-1 flex flex-col items-center justify-center text-center max-w-2xl mx-auto w-full py-20">
+
+      <div class="divider mb-12"></div>
+
+      <h1 class="headline mb-4">
+        想說，<br />卻沒法說。
+      </h1>
+
+      <p class="slogan mb-3">no judgement, just yours.</p>
+
+      <p class="text-[#7a7268] text-sm mb-16 leading-relaxed max-w-sm">
+        說給 Babble——私密、匿名、有人在聽。<br />
+        AI 會認真回應你說的每一句話，<br />
+        給你今天就能做的具體建議。
+      </p>
+
+      <!-- Email form -->
+      <form id="emailForm" class="w-full max-w-sm flex flex-col gap-3">
+        <input
+          type="email"
+          id="emailInput"
+          placeholder="your@email.com"
+          required
+          class="w-full px-4 py-3 rounded-xl text-sm"
+        />
+        <button
+          type="submit"
+          id="submitBtn"
+          class="w-full px-4 py-3 rounded-xl text-sm font-medium"
+        >
+          我想試用
+        </button>
+        <p id="successMsg" class="text-[#9d8fcc] text-xs hidden">
+          收到了 ✦ 我們會在試用開放時第一個通知你
+        </p>
+      </form>
+
+      <p class="text-[#4a4642] text-xs mt-6">我們不收集任何其他資料</p>
+
+      <div class="divider mt-16"></div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-6 text-center text-[#3a3632] text-xs max-w-4xl mx-auto w-full">
+      © 2026 Babble
+    </footer>
+
+  </div>
+
+  <script>
+    const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfLGYeWsVVw1CDDg0E7VQj1jtnoEj7YzVvYoB1B5Pv0WC4-Yw/viewform';
+
+    const form = document.getElementById('emailForm');
+    const input = document.getElementById('emailInput');
+    const btn = document.getElementById('submitBtn');
+    const successMsg = document.getElementById('successMsg');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const email = input.value.trim();
+      if (!email) return;
+
+      btn.disabled = true;
+      btn.textContent = '跳轉中…';
+
+      // Show success feedback briefly, then redirect
+      successMsg.classList.remove('hidden');
+
+      setTimeout(() => {
+        window.location.href = FORM_URL;
+      }, 800);
+    });
+  </script>
+
+</body>
+</html>
