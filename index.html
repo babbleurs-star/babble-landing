@@ -178,11 +178,11 @@
       btn.disabled = true;
       btn.textContent = '跳轉中…';
 
-      // Show success feedback briefly, then redirect
+      // Show success feedback briefly, then redirect with email pre-filled
       successMsg.classList.remove('hidden');
 
       setTimeout(() => {
-        window.location.href = FORM_URL;
+        window.location.href = FORM_URL + '?usp=pp_url&entry.1895109915=' + encodeURIComponent(email);
       }, 800);
     });
   </script>
